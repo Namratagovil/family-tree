@@ -68,8 +68,8 @@ export default function ProfileSheet({ person, open, onOpenChange, onPhotoUpdate
                 <img
                   src={photoSrc}
                   alt={person.name}
-                  className="w-16 h-16 rounded-full object-cover ring-2 ring-offset-2"
-                  style={{ ringColor: color }}
+                  className="w-16 h-16 rounded-full object-cover"
+                  style={{ outline: `2.5px solid ${color}`, outlineOffset: '2px' }}
                 />
               ) : (
                 <div
