@@ -18,7 +18,7 @@ export const FAMILY_MEMBERS: Person[] = [
   { id: '121', name: 'Gunwant Rai', parentId: '12', generation: 3 },
   { id: '122', name: 'V Ratan', parentId: '12', generation: 3 },
   { id: '123', name: 'R Kumar', parentId: '12', generation: 3 },
-  { id: '124', name: 'Om Saran', parentId: '12', generation: 3 },
+  { id: '124', name: 'Om Saran', parentId: '12', generation: 3, spouse: 'Vidyavati' },
 
   // Generation 4 — children of Chuttan Lal (111)
   { id: '1111', name: 'Brij Kumar', parentId: '111', generation: 4 },
@@ -63,9 +63,9 @@ export const FAMILY_MEMBERS: Person[] = [
 
   // Generation 4 — children of Om Saran (124)
   { id: '1241', name: 'Gopal Krishan', parentId: '124', generation: 4 },
-  { id: '1242', name: 'Radha Krishan', parentId: '124', generation: 4 },
-  { id: '1243', name: 'Gopi Chand', parentId: '124', generation: 4 },
-  { id: '1244', name: 'Ram Naresh', parentId: '124', generation: 4 },
+  { id: '1242', name: 'Radha Krishan', parentId: '124', generation: 4, spouse: 'Asha' },
+  { id: '1243', name: 'Gopi Chand', parentId: '124', generation: 4, spouse: 'Manju' },
+  { id: '1244', name: 'Ram Naresh', parentId: '124', generation: 4, spouse: 'Savita' },
 
   // Generation 5 — children of Brij Kumar (1111)
   { id: '11111', name: 'Pradeep Kumar', parentId: '1111', generation: 5 },
@@ -120,21 +120,21 @@ export const FAMILY_MEMBERS: Person[] = [
   { id: '12142', name: 'Neeraj', parentId: '1213', generation: 5 },
 
   // Generation 5 — children of Gopal Krishan (1241)
-  { id: '12411', name: 'Dr. Sanjay', parentId: '1241', generation: 5 },
-  { id: '12412', name: 'Shalu', parentId: '1242', generation: 5 },
+  { id: '12411', name: 'Dr. Sanjay', parentId: '1241', generation: 5, spouse: 'Savita' },
+  { id: '12412', name: 'Shalu', parentId: '1242', generation: 5, spouse: 'Anil' },
 
   // Generation 5 — children of Radha Krishan (1242)
-  { id: '12421', name: 'Sumit', parentId: '1242', generation: 5 },
-  { id: '12422', name: 'Ruchir', parentId: '1242', generation: 5 },
-  { id: '12423', name: 'Namrata', parentId: '1242', generation: 5 },
+  { id: '12421', name: 'Sumit', parentId: '1242', generation: 5, spouse: 'Shilpi' },
+  { id: '12422', name: 'Ruchir', parentId: '1242', generation: 5, spouse: 'Sonal' },
+  { id: '12423', name: 'Namrata', parentId: '1242', generation: 5, spouse: 'Varun' },
 
   // Generation 5 — children of Gopi Chand (1243)
-  { id: '12431', name: 'Priya', parentId: '1243', generation: 5 },
-  { id: '12432', name: 'Saurabh', parentId: '1243', generation: 5 },
+  { id: '12431', name: 'Priya', parentId: '1243', generation: 5, spouse: 'Mayank' },
+  { id: '12432', name: 'Saurabh', parentId: '1243', generation: 5, spouse: 'Jalpa' },
 
   // Generation 5 — children of Ram Naresh (1244)
-  { id: '12441', name: 'Namieta', parentId: '1244', generation: 5 },
-  { id: '12442', name: 'Amit', parentId: '1244', generation: 5 },
+  { id: '12441', name: 'Namieta', parentId: '1244', generation: 5, spouse: 'Vijay' },
+  { id: '12442', name: 'Amit', parentId: '1244', generation: 5, spouse: 'Richa' },
 
   // Generation 6 — children of Tanuj (12131)
   { id: '121311', name: 'Nishita', parentId: '12131', generation: 6 },
