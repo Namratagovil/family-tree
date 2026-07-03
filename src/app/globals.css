@@ -22,6 +22,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+html.dark,
+html.dark body {
+  background-color: #030712;
+}
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
 #__next,
 [data-nextjs-scroll-focus-boundary] {
   height: 100%;
@@ -38,6 +50,19 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #d1d5db;
   border-radius: 9999px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 @layer utilities {

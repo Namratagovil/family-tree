@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,10 +18,15 @@ const config: Config = {
         primary: {
           DEFAULT: '#004C2B',
           hover: '#003d22',
+          light: '#4ADE9C',
         },
         accent: {
           DEFAULT: '#F87B2A',
           hover: '#e06a1c',
+          // Darker text-safe shade — #F87B2A only clears ~2.8:1 on white,
+          // so any place accent is used as text/icon color needs this instead.
+          fg: '#B54F00',
+          fgDark: '#FFB07A',
         },
         tertiary: {
           rose: '#C89588',

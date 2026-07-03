@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button'
 import ImageUpload from '@/components/ImageUpload'
 import { Person } from '@/types'
-import { getInitials, getBranchColor } from '@/lib/utils'
+import { getInitials, getBranchColor, getContrastTextColor } from '@/lib/utils'
 import { CONTACT_EMAIL, FAMILY_MEMBERS } from '@/data/familyData'
 
 interface ProfileSheetProps {
@@ -47,6 +47,7 @@ export default function ProfileSheet({ person, open, onOpenChange, onPhotoUpdate
   if (!person) return null
 
   const color = getBranchColor(person.id)
+  const avatarTextColor = getContrastTextColor(color)
   const initials = getInitials(person.name)
   const { parent, children, siblings } = getRelatives(person)
   const mailto = buildMailtoLink(person)
@@ -73,13 +74,13 @@ export default function ProfileSheet({ person, open, onOpenChange, onPhotoUpdate
                 />
               ) : (
                 <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-bold"
-                  style={{ backgroundColor: color }}
+                  className="w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold"
+                  style={{ backgroundColor: color, color: avatarTextColor }}
                 >
                   {initials}
                 </div>
               )}
-              <span className="absolute -bottom-1 -right-1 text-[10px] bg-white border border-gray-200 rounded-full px-1.5 py-0.5 font-mono text-gray-500 shadow-sm">
+              <span className="absolute -bottom-1 -right-1 text-[10px] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-full px-1.5 py-0.5 font-mono text-gray-600 dark:text-gray-300 shadow-sm">
                 {person.id}
               </span>
             </div>
@@ -96,30 +97,30 @@ export default function ProfileSheet({ person, open, onOpenChange, onPhotoUpdate
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Family connections */}
           <div className="space-y-3">
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Family</p>
-            <div className="rounded-xl bg-gray-50 divide-y divide-gray-100">
+            <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">Family</p>
+            <div className="rounded-xl bg-gray-50 dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700">
               {parent && (
                 <div className="flex items-center justify-between px-4 py-2.5">
-                  <span className="text-xs text-gray-500">Parent</span>
-                  <span className="text-sm font-medium text-gray-800">{parent.name}</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">Parent</span>
+                  <span className="text-sm font-medium text-gray-800 dark:text-gray-100">{parent.name}</span>
                 </div>
               )}
               {person.spouse && (
                 <div className="flex items-center justify-between px-4 py-2.5">
-                  <span className="text-xs text-gray-500">Spouse</span>
-                  <span className="text-sm font-medium text-gray-800">{person.spouse}</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">Spouse</span>
+                  <span className="text-sm font-medium text-gray-800 dark:text-gray-100">{person.spouse}</span>
                 </div>
               )}
               {children.length > 0 && (
                 <div className="px-4 py-2.5 space-y-1">
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
                     {children.length === 1 ? 'Child' : `Children (${children.length})`}
                   </span>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {children.map(c => (
                       <span
                         key={c.id}
-                        className="text-xs bg-white border border-gray-200 rounded-full px-2.5 py-1 text-gray-700"
+                        className="text-xs bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-full px-2.5 py-1 text-gray-700 dark:text-gray-200"
                       >
                         {c.name}
                       </span>
@@ -129,14 +130,14 @@ export default function ProfileSheet({ person, open, onOpenChange, onPhotoUpdate
               )}
               {siblings.length > 0 && (
                 <div className="px-4 py-2.5 space-y-1">
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
                     Siblings ({siblings.length})
                   </span>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {siblings.map(s => (
                       <span
                         key={s.id}
-                        className="text-xs bg-white border border-gray-200 rounded-full px-2.5 py-1 text-gray-700"
+                        className="text-xs bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-full px-2.5 py-1 text-gray-700 dark:text-gray-200"
                       >
                         {s.name}
                       </span>
@@ -151,13 +152,13 @@ export default function ProfileSheet({ person, open, onOpenChange, onPhotoUpdate
           <ImageUpload person={person} onPhotoChange={handlePhotoChange} />
 
           {/* Missing connections */}
-          <div className="rounded-xl border border-accent/30 bg-accent/5 p-4 flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+          <div className="rounded-xl border border-accent/40 bg-accent/5 dark:bg-accent/10 p-4 flex items-start gap-3">
+            <AlertCircle className="h-5 w-5 text-accent-fg dark:text-accent-fgDark flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div className="space-y-2">
-              <p className="text-sm text-gray-700 font-medium">Notice missing relatives or broken connections?</p>
+              <p className="text-sm text-gray-800 dark:text-gray-100 font-medium">Notice missing relatives or broken connections?</p>
               <Button variant="accent" size="sm" asChild>
                 <a href={mailto}>
-                  <Users className="h-4 w-4" />
+                  <Users className="h-4 w-4" aria-hidden="true" />
                   Report Missing Connection
                 </a>
               </Button>

@@ -13,6 +13,9 @@ export interface LayoutNode extends Person {
   y: number
   width: number
   height: number
+  hasChildren: boolean
+  childCount: number
+  isCollapsed: boolean
 }
 
 export interface TreeEdge {
@@ -30,3 +33,7 @@ export interface TreeLayout {
 }
 
 export type ViewMode = 'canvas' | 'list'
+
+export type LayoutDirection = 'top-down' | 'bottom-up'
+export type LayoutAlignment = 'left' | 'center' | 'right'
+export type ThemeMode = 'light' | 'dark'

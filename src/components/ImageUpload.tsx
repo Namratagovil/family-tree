@@ -98,46 +98,48 @@ export default function ImageUpload({ person, onPhotoChange }: ImageUploadProps)
 
   return (
     <div className="space-y-3">
-      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Photo</p>
+      <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wide">Photo</p>
 
       {/* Drop zone */}
-      <div
+      <button
+        type="button"
         onClick={() => inputRef.current?.click()}
         onDragOver={e => { e.preventDefault(); setIsDragging(true) }}
         onDragLeave={() => setIsDragging(false)}
         onDrop={handleDrop}
-        className={`relative rounded-xl border-2 border-dashed flex items-center justify-center cursor-pointer transition-colors overflow-hidden
-          ${isDragging ? 'border-accent bg-accent/5' : 'border-gray-200 hover:border-primary/40 hover:bg-primary/5'}
+        aria-label={preview ? 'Change photo' : 'Upload a photo, click or drag a file here'}
+        className={`relative w-full rounded-xl border-2 border-dashed flex items-center justify-center cursor-pointer transition-colors overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
+          ${isDragging ? 'border-accent bg-accent/5' : 'border-gray-300 dark:border-gray-600 hover:border-primary/40 dark:hover:border-primary-light/50 hover:bg-primary/5 dark:hover:bg-primary-light/5'}
           ${preview ? 'h-36' : 'h-24'}`}
       >
         {isProcessing ? (
-          <div className="flex flex-col items-center gap-2 text-gray-400">
-            <div className="h-5 w-5 border-2 border-primary/40 border-t-primary rounded-full animate-spin" />
+          <div className="flex flex-col items-center gap-2 text-gray-600 dark:text-gray-300">
+            <div className="h-5 w-5 border-2 border-primary/40 border-t-primary rounded-full animate-spin" aria-hidden="true" />
             <span className="text-xs">Processing…</span>
           </div>
         ) : preview ? (
           <>
-            <img src={preview} alt="Preview" className="h-full w-full object-cover" />
+            <img src={preview} alt="" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-black/30 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
               <span className="text-white text-xs font-medium">Change photo</span>
             </div>
           </>
         ) : (
-          <div className="flex flex-col items-center gap-1.5 text-gray-400">
-            <Upload className="h-6 w-6" />
+          <div className="flex flex-col items-center gap-1.5 text-gray-600 dark:text-gray-300">
+            <Upload className="h-6 w-6" aria-hidden="true" />
             <span className="text-xs">Click or drag a photo</span>
           </div>
         )}
-      </div>
+      </button>
 
-      <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFile} />
+      <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFile} aria-hidden="true" tabIndex={-1} />
 
       {/* Success + export */}
       {preview && !isProcessing && (
-        <div className="rounded-xl bg-primary/5 border border-primary/15 p-4 space-y-3">
+        <div className="rounded-xl bg-primary/5 dark:bg-primary-light/10 border border-primary/15 dark:border-primary-light/20 p-4 space-y-3">
           {!exported ? (
             <>
-              <p className="text-sm text-primary font-medium leading-snug">
+              <p className="text-sm text-primary dark:text-primary-light font-medium leading-snug">
                 Looking good! Click below to download your update bundle, then send it to{' '}
                 <strong>Namrata</strong> via email/WhatsApp to permanently add it to the family tree.
               </p>
@@ -147,16 +149,16 @@ export default function ImageUpload({ person, onPhotoChange }: ImageUploadProps)
                 className="w-full gap-2"
                 onClick={handleExport}
               >
-                <Download className="h-4 w-4" />
+                <Download className="h-4 w-4" aria-hidden="true" />
                 Export Update Bundle
               </Button>
             </>
           ) : (
-            <div className="flex items-center gap-2 text-primary">
-              <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
+            <div className="flex items-center gap-2 text-primary dark:text-primary-light">
+              <CheckCircle2 className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               <p className="text-sm font-medium">
                 Bundle downloaded! Send it to{' '}
-                <a href={`mailto:${CONTACT_EMAIL}`} className="underline font-semibold">
+                <a href={`mailto:${CONTACT_EMAIL}`} className="underline font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900 rounded">
                   {CONTACT_EMAIL}
                 </a>
               </p>

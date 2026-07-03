@@ -23,3 +23,30 @@ export function getBranchColor(id: string): string {
   if (id.startsWith('12')) return '#D2BF96'
   return TERTIARY_COLORS[0]
 }
+
+/**
+ * WCAG relative luminance (per the 1.4.3/1.4.11 contrast formula).
+ */
+function relativeLuminance(hex: string): number {
+  const n = hex.replace('#', '')
+  const [r, g, b] = [0, 2, 4].map(i => parseInt(n.slice(i, i + 2), 16) / 255)
+  const lin = (c: number) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
+  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+}
+
+export function contrastRatio(hexA: string, hexB: string): number {
+  const lA = relativeLuminance(hexA)
+  const lB = relativeLuminance(hexB)
+  const [lighter, darker] = lA > lB ? [lA, lB] : [lB, lA]
+  return (lighter + 0.05) / (darker + 0.05)
+}
+
+/**
+ * Picks black or white text — whichever clears WCAG AA (4.5:1) against the
+ * given background — so avatar initials stay readable across every branch color.
+ */
+export function getContrastTextColor(bgHex: string): string {
+  const white = '#FFFFFF'
+  const black = '#111827'
+  return contrastRatio(bgHex, white) >= contrastRatio(bgHex, black) ? white : black
+}
