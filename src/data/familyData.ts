@@ -63,7 +63,7 @@ export const FAMILY_MEMBERS: Person[] = [
 
   // Generation 4 — children of Om Saran (124)
   { id: '1241', name: 'Gopal Krishan', parentId: '124', generation: 4 },
-  { id: '1242', name: 'Shalu', parentId: '124', generation: 4 },
+  { id: '1242', name: 'Radha Krishan', parentId: '124', generation: 4 },
   { id: '1243', name: 'Gopi Chand', parentId: '124', generation: 4 },
   { id: '1244', name: 'Ram Naresh', parentId: '124', generation: 4 },
 
@@ -121,9 +121,10 @@ export const FAMILY_MEMBERS: Person[] = [
 
   // Generation 5 — children of Gopal Krishan (1241)
   { id: '12411', name: 'Dr. Sanjay', parentId: '1241', generation: 5 },
+  { id: '12412', name: 'Shalu', parentId: '1242', generation: 5 },
 
-  // Generation 5 — children of Shalu (1242)
-  { id: '12421', name: 'Radha Krishan', parentId: '1242', generation: 5, spouse: 'Sumit' },
+  // Generation 5 — children of Radha Krishan (1242)
+  { id: '12421', name: 'Sumit', parentId: '1242', generation: 5 },
   { id: '12422', name: 'Ruchir', parentId: '1242', generation: 5 },
   { id: '12423', name: 'Namrata', parentId: '1242', generation: 5 },
 
@@ -147,7 +148,10 @@ export const FAMILY_MEMBERS: Person[] = [
   { id: '124111', name: 'Ayush', parentId: '12411', generation: 6 },
   { id: '124112', name: 'Satyam', parentId: '12411', generation: 6 },
 
-  // Generation 6 — children of Radha Krishan (12421)
+  // Generation 6 — children of Shalu (12412)
+  { id: '124121', name: 'Shivang', parentId: '12412', generation: 6 },
+
+  // Generation 6 — children of Sumit (12421)
   { id: '124211', name: 'Agnim', parentId: '12421', generation: 6 },
   { id: '124212', name: 'Ananya', parentId: '12421', generation: 6 },
 
@@ -156,7 +160,7 @@ export const FAMILY_MEMBERS: Person[] = [
   { id: '124222', name: 'Avni', parentId: '12422', generation: 6 },
 
   // Generation 6 — children of Priya (12431)
-  { id: '124311', name: 'Unknown', parentId: '12431', generation: 6 },
+  { id: '124311', name: 'Ayati', parentId: '12431', generation: 6 },
 
   // Generation 6 — children of Saurabh (12432)
   { id: '124321', name: 'Unknown', parentId: '12432', generation: 6 },
