@@ -101,8 +101,12 @@ export default function ProfileSheet({ person, open, onOpenChange, onPhotoUpdate
             <div className="rounded-xl bg-gray-50 dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700">
               {parent && (
                 <div className="flex items-center justify-between px-4 py-2.5">
-                  <span className="text-xs text-gray-600 dark:text-gray-400">Parent</span>
-                  <span className="text-sm font-medium text-gray-800 dark:text-gray-100">{parent.name}</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    {parent.spouse ? 'Parents' : 'Parent'}
+                  </span>
+                  <span className="text-sm font-medium text-gray-800 dark:text-gray-100">
+                    {parent.spouse ? `${parent.name} & ${parent.spouse}` : parent.name}
+                  </span>
                 </div>
               )}
               {person.spouse && (

@@ -121,7 +121,7 @@ export const FAMILY_MEMBERS: Person[] = [
 
   // Generation 5 — children of Gopal Krishan (1241)
   { id: '12411', name: 'Dr. Sanjay', parentId: '1241', generation: 5, spouse: 'Savita' },
-  { id: '12412', name: 'Shalu', parentId: '1242', generation: 5, spouse: 'Anil' },
+  { id: '12412', name: 'Shalu', parentId: '1241', generation: 5, spouse: 'Anil' },
 
   // Generation 5 — children of Radha Krishan (1242)
   { id: '12421', name: 'Sumit', parentId: '1242', generation: 5, spouse: 'Shilpi' },
