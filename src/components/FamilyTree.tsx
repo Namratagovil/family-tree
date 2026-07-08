@@ -1,20 +1,7 @@
 'use client'
 
 import React, { useState, useCallback, useMemo } from 'react'
-import {
-  Network,
-  List,
-  TreePine,
-  Sun,
-  Moon,
-  ArrowDownToLine,
-  ArrowUpToLine,
-  AlignLeft,
-  AlignCenter,
-  AlignRight,
-  ChevronsDown,
-  ChevronsUp,
-} from 'lucide-react'
+import { TreePine } from 'lucide-react'
 import { FAMILY_MEMBERS } from '@/data/familyData'
 import { useViewMode } from '@/hooks/useViewMode'
 import { useTheme } from '@/hooks/useTheme'
@@ -24,15 +11,15 @@ import CanvasView from './CanvasView'
 import ListView from './ListView'
 import ProfileSheet from './ProfileSheet'
 
-const DIRECTION_OPTIONS: { value: LayoutDirection; label: string; icon: typeof ArrowDownToLine }[] = [
-  { value: 'top-down', label: 'Top Down', icon: ArrowDownToLine },
-  { value: 'bottom-up', label: 'Bottom Up', icon: ArrowUpToLine },
+const DIRECTION_OPTIONS: { value: LayoutDirection; label: string }[] = [
+  { value: 'top-down', label: 'Top Down' },
+  { value: 'bottom-up', label: 'Bottom Up' },
 ]
 
-const ALIGNMENT_OPTIONS: { value: LayoutAlignment; label: string; icon: typeof AlignLeft }[] = [
-  { value: 'left', label: 'Left', icon: AlignLeft },
-  { value: 'center', label: 'Center', icon: AlignCenter },
-  { value: 'right', label: 'Right', icon: AlignRight },
+const ALIGNMENT_OPTIONS: { value: LayoutAlignment; label: string }[] = [
+  { value: 'left', label: 'Left' },
+  { value: 'center', label: 'Center' },
+  { value: 'right', label: 'Right' },
 ]
 
 export default function FamilyTree() {
@@ -92,35 +79,32 @@ export default function FamilyTree() {
               <button
                 onClick={() => setViewMode('canvas')}
                 aria-pressed={viewMode === 'canvas'}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
                   ${viewMode === 'canvas'
                     ? 'bg-white dark:bg-gray-700 shadow-sm text-primary dark:text-primary-light'
                     : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100'}`}
               >
-                <Network className="h-3.5 w-3.5" aria-hidden="true" />
-                <span className="hidden sm:inline">Canvas</span>
+                Canvas
               </button>
               <button
                 onClick={() => setViewMode('list')}
                 aria-pressed={viewMode === 'list'}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
+                className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
                   ${viewMode === 'list'
                     ? 'bg-white dark:bg-gray-700 shadow-sm text-primary dark:text-primary-light'
                     : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100'}`}
               >
-                <List className="h-3.5 w-3.5" aria-hidden="true" />
-                <span className="hidden sm:inline">List</span>
+                List
               </button>
             </div>
 
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               aria-pressed={theme === 'dark'}
-              className="w-9 h-9 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900"
+              className="h-9 px-3 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs font-medium whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900"
             >
-              {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+              {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
             </button>
           </div>
         </div>
@@ -146,22 +130,18 @@ export default function FamilyTree() {
           <div className="flex items-center gap-3 ml-auto flex-wrap">
             <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1 gap-1" role="group" aria-label="Layout direction">
               {DIRECTION_OPTIONS.map(opt => {
-                const Icon = opt.icon
                 const active = direction === opt.value
                 return (
                   <button
                     key={opt.value}
                     onClick={() => setDirection(opt.value)}
                     aria-pressed={active}
-                    aria-label={opt.label}
-                    title={opt.label}
-                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[11px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
+                    className={`px-2.5 py-1.5 rounded-md text-[11px] font-medium whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
                       ${active
                         ? 'bg-white dark:bg-gray-700 shadow-sm text-primary dark:text-primary-light'
                         : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100'}`}
                   >
-                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                    <span className="hidden md:inline">{opt.label}</span>
+                    {opt.label}
                   </button>
                 )
               })}
@@ -169,22 +149,18 @@ export default function FamilyTree() {
 
             <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1 gap-1" role="group" aria-label="Sibling alignment">
               {ALIGNMENT_OPTIONS.map(opt => {
-                const Icon = opt.icon
                 const active = alignment === opt.value
                 return (
                   <button
                     key={opt.value}
                     onClick={() => setAlignment(opt.value)}
                     aria-pressed={active}
-                    aria-label={opt.label}
-                    title={opt.label}
-                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[11px] font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
+                    className={`px-2.5 py-1.5 rounded-md text-[11px] font-medium whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900
                       ${active
                         ? 'bg-white dark:bg-gray-700 shadow-sm text-primary dark:text-primary-light'
                         : 'text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100'}`}
                   >
-                    <Icon className="h-3.5 w-3.5" aria-hidden="true" />
-                    <span className="hidden md:inline">{opt.label}</span>
+                    {opt.label}
                   </button>
                 )
               })}
@@ -193,21 +169,15 @@ export default function FamilyTree() {
             <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1 gap-1" role="group" aria-label="Expand or collapse all">
               <button
                 onClick={expandAll}
-                aria-label="Expand all"
-                title="Expand all"
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-white dark:hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900"
+                className="px-2.5 py-1.5 rounded-md text-[11px] font-medium whitespace-nowrap transition-all text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-white dark:hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900"
               >
-                <ChevronsDown className="h-3.5 w-3.5" aria-hidden="true" />
-                <span className="hidden md:inline">Expand All</span>
+                Expand All
               </button>
               <button
                 onClick={collapseAll}
-                aria-label="Collapse all"
-                title="Collapse all"
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[11px] font-medium transition-all text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-white dark:hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900"
+                className="px-2.5 py-1.5 rounded-md text-[11px] font-medium whitespace-nowrap transition-all text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-white dark:hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-fg dark:focus-visible:ring-offset-gray-900"
               >
-                <ChevronsUp className="h-3.5 w-3.5" aria-hidden="true" />
-                <span className="hidden md:inline">Collapse All</span>
+                Collapse All
               </button>
             </div>
           </div>
