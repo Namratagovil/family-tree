@@ -1,7 +1,7 @@
 import { Person, LayoutNode, TreeEdge, TreeLayout, LayoutDirection, LayoutAlignment } from '@/types'
 
-export const NODE_W = 130
-export const NODE_H = 54
+export const NODE_W = 160
+export const NODE_H = 76
 export const H_GAP = 14
 export const V_GAP = 72
 
@@ -127,27 +127,109 @@ export function computeLayout(
       }
     })
 
-  // Parent -> child anchor points flip depending on which one sits visually above the other.
-  const parentIsAbove = (parentY: number, childY: number) => parentY <= childY
-
   const edges: TreeEdge[] = members
     .filter(m => m.parentId && positions.has(m.id) && positions.has(m.parentId!))
-    .map(m => {
-      const child = positions.get(m.id)!
-      const parent = positions.get(m.parentId!)!
-      const x1 = parent.x + NODE_W / 2
-      const x2 = child.x + NODE_W / 2
-      const above = parentIsAbove(parent.y, child.y)
-      const y1 = above ? parent.y + NODE_H : parent.y
-      const y2 = above ? child.y : child.y + NODE_H
-      const my = (y1 + y2) / 2
-      return {
-        id: `e-${m.parentId}-${m.id}`,
-        parentId: m.parentId!,
-        childId: m.id,
-        path: `M ${x1} ${y1} C ${x1} ${my}, ${x2} ${my}, ${x2} ${y2}`,
+    .map(m => buildEdge(m.parentId!, m.id, positions.get(m.parentId!)!, positions.get(m.id)!))
+
+  const allX = Array.from(positions.values()).map(p => p.x)
+  const allY = Array.from(positions.values()).map(p => p.y)
+  const canvasWidth = Math.max(...allX) + NODE_W + 60
+  const canvasHeight = Math.max(...allY) + NODE_H + 60
+
+  return { nodes, edges, canvasWidth, canvasHeight }
+}
+
+// Parent -> child anchor points flip depending on which one sits visually above the other.
+function buildEdge(
+  parentId: string,
+  childId: string,
+  parent: { x: number; y: number },
+  child: { x: number; y: number }
+): TreeEdge {
+  const parentIsAbove = parent.y <= child.y
+  const x1 = parent.x + NODE_W / 2
+  const x2 = child.x + NODE_W / 2
+  const y1 = parentIsAbove ? parent.y + NODE_H : parent.y
+  const y2 = parentIsAbove ? child.y : child.y + NODE_H
+  const my = (y1 + y2) / 2
+  return {
+    id: `e-${parentId}-${childId}`,
+    parentId,
+    childId,
+    path: `M ${x1} ${y1} C ${x1} ${my}, ${x2} ${my}, ${x2} ${y2}`,
+  }
+}
+
+/**
+ * A "focus" layout shows only one person, their parent, and their direct
+ * children — the immediate family — so clicking a node in a 90+ member tree
+ * can zoom into a legible, uncluttered cluster instead of the whole canvas.
+ */
+export function computeFocusLayout(
+  members: Person[],
+  focusId: string,
+  direction: LayoutDirection = 'top-down'
+): TreeLayout {
+  const person = members.find(m => m.id === focusId)
+  if (!person) {
+    return { nodes: [], edges: [], canvasWidth: NODE_W + 60, canvasHeight: NODE_H + 60 }
+  }
+
+  const parent = person.parentId
+    ? members.find(m => m.id === person.parentId) ?? null
+    : null
+  const children = members.filter(m => m.parentId === focusId)
+
+  type Tier = { role: 'parent' | 'self' | 'children'; members: Person[] }
+  const orderedTiers: Tier[] =
+    direction === 'bottom-up'
+      ? [
+          { role: 'children', members: children },
+          { role: 'self', members: [person] },
+          { role: 'parent', members: parent ? [parent] : [] },
+        ]
+      : [
+          { role: 'parent', members: parent ? [parent] : [] },
+          { role: 'self', members: [person] },
+          { role: 'children', members: children },
+        ]
+
+  const rowStep = NODE_H + V_GAP
+  const selfCenterX = NODE_W / 2
+  const positions = new Map<string, { x: number; y: number }>()
+
+  orderedTiers
+    .filter(tier => tier.members.length > 0)
+    .forEach((tier, i) => {
+      const y = i * rowStep
+      if (tier.role === 'children') {
+        const totalWidth = tier.members.length * NODE_W + (tier.members.length - 1) * H_GAP
+        const startX = selfCenterX - totalWidth / 2
+        tier.members.forEach((c, idx) => {
+          positions.set(c.id, { x: startX + idx * (NODE_W + H_GAP), y })
+        })
+      } else {
+        positions.set(tier.members[0].id, { x: 0, y })
       }
     })
+
+  const focusMembers = [parent, person, ...children].filter((m): m is Person => !!m)
+
+  const nodes: LayoutNode[] = focusMembers.map(m => ({
+    ...m,
+    ...positions.get(m.id)!,
+    width: NODE_W,
+    height: NODE_H,
+    hasChildren: false,
+    childCount: 0,
+    isCollapsed: false,
+  }))
+
+  const edges: TreeEdge[] = []
+  if (parent) edges.push(buildEdge(parent.id, person.id, positions.get(parent.id)!, positions.get(person.id)!))
+  for (const c of children) {
+    edges.push(buildEdge(person.id, c.id, positions.get(person.id)!, positions.get(c.id)!))
+  }
 
   const allX = Array.from(positions.values()).map(p => p.x)
   const allY = Array.from(positions.values()).map(p => p.y)
