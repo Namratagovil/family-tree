@@ -1,5 +1,5 @@
-import FamilyTree from '@/components/FamilyTree'
+import SimpleFamilyTree from '@/components/SimpleFamilyTree'
 
 export default function Page() {
-  return <FamilyTree />
+  return <SimpleFamilyTree />
 }
