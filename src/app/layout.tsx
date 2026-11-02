@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Kunwar Sain Family Tree',
-  description: 'Interactive family tree — Kunwar Sain lineage across 6 generations',
+  description: 'Interactive family tree — Kunwar Sain lineage across 7 generations',
 }
 
 const THEME_INIT_SCRIPT = `
@@ -23,7 +24,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body style={{ height: '100%' }}>{children}</body>
+      <body style={{ height: '100%' }}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

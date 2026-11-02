@@ -69,7 +69,7 @@ export default function FamilyTree() {
             <TreePine className="h-6 w-6 text-primary dark:text-primary-light flex-shrink-0" aria-hidden="true" />
             <div className="min-w-0">
               <h1 className="text-base font-bold text-gray-900 dark:text-gray-50 leading-tight truncate">Kunwar Sain Family Tree</h1>
-              <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{members.length} members · 6 generations</p>
+              <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-tight">{members.length} members · 7 generations</p>
             </div>
           </div>
 
@@ -113,8 +113,8 @@ export default function FamilyTree() {
       {/* Toolbar: legend + layout mode controls */}
       <div className="flex-shrink-0 bg-white dark:bg-gray-900 border-b border-gray-50 dark:border-gray-800 px-4 py-2 flex flex-wrap items-center gap-x-4 gap-y-2">
         {[
-          { label: 'Jupad Sain branch', color: '#B4D4CF' },
-          { label: 'Bhola Nath branch', color: '#D2BF96' },
+          { label: 'Jhumpad Sain branch', color: '#B4D4CF' },
+          { label: 'Bhola Nath Sahay branch', color: '#D2BF96' },
         ].map(item => (
           <div key={item.label} className="flex items-center gap-1.5 flex-shrink-0">
             <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} aria-hidden="true" />

@@ -6,9 +6,10 @@ import { Person } from '@/types'
 import { getBranchColor } from '@/lib/utils'
 
 const ROOT_ID = '1'
-const TEXT_SIZES = [20, 24, 28, 32]
-const DEFAULT_SIZE_INDEX = 1
-const SIZE_STORAGE_KEY = 'family-tree-text-size'
+// Root font size in px. At 12.8px the smallest text on screen (text-xl, 1.25rem) is 16px.
+const TEXT_SIZES = [12.8, 16, 20, 24, 28, 32]
+const DEFAULT_SIZE_INDEX = 3
+const SIZE_STORAGE_KEY = 'family-tree-text-size-px'
 
 type Screen = { kind: 'person'; id: string } | { kind: 'everyone' }
 
@@ -85,6 +86,7 @@ function BarButton({ children, onClick, disabled, pressed }: BarButtonProps) {
 export default function SimpleFamilyTree() {
   const [history, setHistory] = useState<Screen[]>([{ kind: 'person', id: ROOT_ID }])
   const [sizeIndex, setSizeIndex] = useState(DEFAULT_SIZE_INDEX)
+  const [sizeError, setSizeError] = useState<string | null>(null)
 
   const screen = history[history.length - 1]
 
@@ -100,17 +102,36 @@ export default function SimpleFamilyTree() {
 
   useEffect(() => {
     try {
-      const stored = Number(localStorage.getItem(SIZE_STORAGE_KEY))
-      if (Number.isInteger(stored) && stored >= 0 && stored < TEXT_SIZES.length) setSizeIndex(stored)
+      const stored = TEXT_SIZES.indexOf(Number(localStorage.getItem(SIZE_STORAGE_KEY)))
+      if (stored >= 0) setSizeIndex(stored)
     } catch {}
   }, [])
 
   useEffect(() => {
     document.documentElement.style.fontSize = `${TEXT_SIZES[sizeIndex]}px`
     try {
-      localStorage.setItem(SIZE_STORAGE_KEY, String(sizeIndex))
+      localStorage.setItem(SIZE_STORAGE_KEY, String(TEXT_SIZES[sizeIndex]))
     } catch {}
   }, [sizeIndex])
+
+  useEffect(() => {
+    if (!sizeError) return
+    const timer = setTimeout(() => setSizeError(null), 4000)
+    return () => clearTimeout(timer)
+  }, [sizeError])
+
+  const changeSize = useCallback(
+    (step: 1 | -1) => {
+      const next = sizeIndex + step
+      if (next < 0 || next >= TEXT_SIZES.length) {
+        const direction = step < 0 ? 'smaller' : 'bigger'
+        return setSizeError(`Cannot make the text ${direction}. This is the ${step < 0 ? 'smallest' : 'biggest'} size.`)
+      }
+      setSizeError(null)
+      setSizeIndex(next)
+    },
+    [sizeIndex]
+  )
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
@@ -127,10 +148,16 @@ export default function SimpleFamilyTree() {
   const siblings = person?.parentId
     ? (childrenOf.get(person.parentId) ?? []).filter(m => m.id !== person.id)
     : []
-  const everyone = useMemo(
-    () => [...FAMILY_MEMBERS].sort((a, b) => displayName(a).localeCompare(displayName(b))),
-    []
-  )
+  // Tree order: oldest ancestor first, each person followed by their own descendants.
+  const everyone = useMemo(() => {
+    const ordered: Person[] = []
+    const visit = (m: Person) => {
+      ordered.push(m)
+      ;(childrenOf.get(m.id) ?? []).forEach(visit)
+    }
+    FAMILY_MEMBERS.filter(m => !m.parentId).forEach(visit)
+    return ordered
+  }, [childrenOf])
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F4F1EA', color: '#111' }}>
@@ -144,15 +171,15 @@ export default function SimpleFamilyTree() {
         </div>
         <div className="mx-auto mt-3 flex max-w-5xl flex-wrap items-center gap-3">
           <span className="text-2xl font-bold text-white">Text size:</span>
-          <BarButton onClick={() => setSizeIndex(i => Math.max(0, i - 1))} disabled={sizeIndex === 0}>
-            Smaller Text
-          </BarButton>
-          <BarButton
-            onClick={() => setSizeIndex(i => Math.min(TEXT_SIZES.length - 1, i + 1))}
-            disabled={sizeIndex === TEXT_SIZES.length - 1}
-          >
-            Bigger Text
-          </BarButton>
+          <BarButton onClick={() => changeSize(-1)}>Smaller Text</BarButton>
+          <BarButton onClick={() => changeSize(1)}>Bigger Text</BarButton>
+        </div>
+        <div role="alert" aria-live="assertive" className="mx-auto max-w-5xl">
+          {sizeError && (
+            <p className="mt-3 rounded-xl border-4 border-red-300 bg-red-700 p-3 text-2xl font-bold text-white">
+              {sizeError}
+            </p>
+          )}
         </div>
       </header>
 
@@ -160,7 +187,7 @@ export default function SimpleFamilyTree() {
         {screen.kind === 'everyone' && (
           <section aria-labelledby="everyone-title" className="space-y-5">
             <h1 id="everyone-title" className="text-4xl font-bold">Everyone in the family</h1>
-            <p className="text-2xl">Press a name to see that person. Names are in A to Z order.</p>
+            <p className="text-2xl">Press a name to see that person. Names are in family order, oldest at the top.</p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {everyone.map(m => (
                 <PersonTile key={m.id} person={m} childCount={countFor(m.id)} onOpen={openPerson} />

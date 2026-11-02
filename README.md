@@ -30,8 +30,8 @@ A responsive, interactive family tree web application built with Next.js 14, Tai
 | Primary | `#004C2B` | Buttons, connectors, nav |
 | Accent | `#F87B2A` | CTAs, missing-connection UI |
 | Rose | `#C89588` | Tertiary avatar/tag |
-| Teal | `#B4D4CF` | Jupad Sain branch |
-| Beige | `#D2BF96` | Bhola Nath branch |
+| Teal | `#B4D4CF` | Jhumpad Sain branch |
+| Beige | `#D2BF96` | Bhola Nath Sahay branch |
 | Yellow | `#F5AC00` | Tertiary tag |
 
 ## Getting Started
@@ -75,8 +75,9 @@ Inside any profile sheet, click **Report Missing Connection** — it opens a pre
 
 All members live in `src/data/familyData.ts` as a flat array. The tree is derived at runtime using the hierarchical ID convention:
 - `1` = root (Kunwar Sain)
-- `11`, `12` = generation 2
-- `111`–`114`, `121`–`124` = generation 3
+- `11` (Baijnath Sahay) = generation 2
+- `111`, `112` (Jhumpad Sain, Bhola Nath Sahay) = generation 3
+- `1111`–`1114`, `1121`–`1124` = generation 4
 - … and so on — each ID's parent is found by removing the last digit.
 
 To add a new member, append an entry with the correct `id`, `parentId`, and `generation`.

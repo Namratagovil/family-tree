@@ -4,175 +4,194 @@ export const FAMILY_MEMBERS: Person[] = [
   // Generation 1 — Root
   { id: '1', name: 'Kunwar Sain', parentId: null, generation: 1 },
 
-  // Generation 2
-  { id: '11', name: 'Jupad Sain', parentId: '1', generation: 2 },
-  { id: '12', name: 'Bhola Nath', parentId: '1', generation: 2 },
+  // Generation 2 — only child of Kunwar Sain
+  { id: '11', name: 'Baijnath Sahay', parentId: '1', generation: 2 },
 
-  // Generation 3 — children of Jupad Sain
-  { id: '111', name: 'Chuttan Lal', parentId: '11', generation: 3 },
-  { id: '112', name: 'B. Dayal', parentId: '11', generation: 3 },
-  { id: '113', name: 'R. Dayal', parentId: '11', generation: 3 },
-  { id: '114', name: 'B. Dayal (2)', parentId: '11', generation: 3 },
+  // Generation 3 — sons of Baijnath Sahay
+  { id: '111', name: 'Jhumpad Sain', parentId: '11', generation: 3 },
+  { id: '112', name: 'Bhola Nath Sahay', parentId: '11', generation: 3 },
 
-  // Generation 3 — children of Bhola Nath
-  { id: '121', name: 'Gunwant Rai', parentId: '12', generation: 3 },
-  { id: '122', name: 'V Ratan', parentId: '12', generation: 3 },
-  { id: '123', name: 'R Kumar', parentId: '12', generation: 3 },
-  { id: '124', name: 'Om Saran', parentId: '12', generation: 3, spouse: 'Vidyavati' },
+  // Generation 4 — children of Jhumpad Sain
+  { id: '1111', name: 'Rameshwar Dayal', parentId: '111', generation: 4, spouse: 'Jugli Bai' },
+  { id: '1112', name: 'Baleshwar Dayal', parentId: '111', generation: 4, spouse: 'Asha Devi' },
+  { id: '1113', name: 'Visheshwar Dayal', parentId: '111', generation: 4 },
+  { id: '1114', name: 'Chhuttan Lal', parentId: '111', generation: 4 },
+  { id: '1115', name: 'Mrs Darshanvati', parentId: '111', generation: 4 },
 
-  // Generation 4 — children of Chuttan Lal (111)
-  { id: '1111', name: 'Brij Kumar', parentId: '111', generation: 4 },
-  { id: '1112', name: 'Suraj Prasad', parentId: '111', generation: 4 },
+  // Generation 4 — children of Bhola Nath Sahay
+  { id: '1121', name: 'Gunwant Rai', parentId: '112', generation: 4 },
+  { id: '1122', name: 'Vidya Ratan', parentId: '112', generation: 4 },
+  { id: '1123', name: 'Raj Kumar', parentId: '112', generation: 4 },
+  { id: '1124', name: 'Om Saran', parentId: '112', generation: 4, spouse: 'Vidyavati' },
 
-  // Generation 4 — children of B. Dayal (112)
-  { id: '1121', name: 'Kailash', parentId: '112', generation: 4 },
-  { id: '1122', name: 'Hemchand', parentId: '112', generation: 4 },
-  { id: '1123', name: 'Praladh', parentId: '112', generation: 4 },
-  { id: '1124', name: 'Santosh Vati', parentId: '112', generation: 4 },
+  // Generation 5 — children of Rameshwar Dayal (1111)
+  { id: '11111', name: 'Rajendra Kumar', parentId: '1111', generation: 5, spouse: 'Shanti Devi' },
+  { id: '11112', name: 'Mohan Lal', parentId: '1111', generation: 5, spouse: 'Shanti Devi' },
+  { id: '11113', name: 'Sohan Lal', parentId: '1111', generation: 5, spouse: 'Sushila Devi' },
+  { id: '11114', name: 'Narendra Kumar', parentId: '1111', generation: 5 },
+  { id: '11115', name: 'Virandra Kumar', parentId: '1111', generation: 5, spouse: 'Urmila' },
+  { id: '11116', name: 'Shakuntala Mittal', parentId: '1111', generation: 5, spouse: 'Ramchand' },
+  { id: '11117', name: 'Puran Devi', parentId: '1111', generation: 5, spouse: 'Govind Ram' },
+  { id: '11118', name: 'Sushila Devi', parentId: '1111', generation: 5, spouse: 'Dr Moolchand Mittal' },
+  { id: '11119', name: 'Mrs Sumitra', parentId: '1111', generation: 5 },
 
-  // Generation 4 — children of R. Dayal (113)
-  { id: '1131', name: 'Sohan Lal', parentId: '113', generation: 4 },
-  { id: '1132', name: 'Mohan Lal', parentId: '113', generation: 4 },
-  { id: '1133', name: 'Rajendra Kumar', parentId: '113', generation: 4 },
-  { id: '1134', name: 'Virandra Kumar', parentId: '113', generation: 4 },
-  { id: '1135', name: 'Mrs Sumitra', parentId: '113', generation: 4 },
+  // Generation 5 — children of Baleshwar Dayal (1112)
+  { id: '11121', name: 'Madan Kumar', parentId: '1112', generation: 5, spouse: 'Kamla Devi' },
+  { id: '11122', name: 'Shiv Kumar', parentId: '1112', generation: 5 },
+  { id: '11123', name: 'Dev Kumar', parentId: '1112', generation: 5 },
+  { id: '11124', name: 'Mainavati', parentId: '1112', generation: 5, spouse: 'Dr Ishwar Dayal' },
 
-  // Generation 4 — children of B. Dayal (114)
-  { id: '1141', name: 'Madan Kumar', parentId: '114', generation: 4 },
-  { id: '1142', name: 'Shiv Kumar', parentId: '114', generation: 4 },
-  { id: '1143', name: 'Dev Kumar', parentId: '114', generation: 4 },
-  { id: '1144', name: 'Naina Vati', parentId: '114', generation: 4 },
+  // Generation 5 — children of Visheshwar Dayal (1113)
+  { id: '11131', name: 'Kailash Chandra', parentId: '1113', generation: 5 },
+  { id: '11132', name: 'Hemchandra', parentId: '1113', generation: 5 },
+  { id: '11133', name: 'Prahlad', parentId: '1113', generation: 5 },
+  { id: '11134', name: 'Santoshvati', parentId: '1113', generation: 5 },
 
-  // Generation 4 — children of Gunwant Rai (121)
-  { id: '1211', name: 'Prem Prakash', parentId: '121', generation: 4 },
-  { id: '1212', name: 'Vishnu Prakash', parentId: '121', generation: 4 },
-  { id: '1213', name: 'Kishan Gopal', parentId: '121', generation: 4 },
+  // Generation 5 — children of Chhuttan Lal (1114)
+  { id: '11141', name: 'Brij Kumar', parentId: '1114', generation: 5 },
+  { id: '11142', name: 'Suraj Kumar', parentId: '1114', generation: 5, spouse: 'Gyarsi Devi' },
 
-  // Generation 4 — children of V Ratan (122)
-  { id: '1221', name: 'Vishnu', parentId: '122', generation: 4 },
-  { id: '1222', name: 'Chandra Mohan', parentId: '122', generation: 4 },
-  { id: '1223', name: 'Rakesh', parentId: '122', generation: 4 },
-  { id: '1224', name: 'Suresh', parentId: '122', generation: 4 },
-  { id: '1225', name: 'Chitra', parentId: '122', generation: 4 },
-  { id: '1226', name: 'Suman', parentId: '122', generation: 4 },
+  // Generation 5 — children of Gunwant Rai (1121)
+  { id: '11211', name: 'Prem Prakash', parentId: '1121', generation: 5 },
+  { id: '11212', name: 'Vishnu Prakash', parentId: '1121', generation: 5 },
+  { id: '11213', name: 'Kishan Gopal', parentId: '1121', generation: 5 },
 
-  // Generation 4 — children of R Kumar (123)
-  { id: '1231', name: 'Mohan', parentId: '123', generation: 4 },
-  { id: '1232', name: 'Binda', parentId: '123', generation: 4 },
-  { id: '1233', name: 'Ramesh', parentId: '123', generation: 4 },
+  // Generation 5 — children of Vidya Ratan (1122)
+  { id: '11221', name: 'Manohar Lal Singhal', parentId: '1122', generation: 5 },
+  { id: '11222', name: 'Urmila', parentId: '1122', generation: 5 },
+  { id: '11223', name: 'Chandra Mohan', parentId: '1122', generation: 5 },
+  { id: '11224', name: 'Rakesh', parentId: '1122', generation: 5, spouse: 'Navneeta' },
+  { id: '11225', name: 'Suresh', parentId: '1122', generation: 5 },
+  { id: '11226', name: 'Chitra', parentId: '1122', generation: 5 },
+  { id: '11227', name: 'Suman', parentId: '1122', generation: 5 },
 
-  // Generation 4 — children of Om Saran (124)
-  { id: '1241', name: 'Gopal Krishan', parentId: '124', generation: 4 },
-  { id: '1242', name: 'Radha Krishan', parentId: '124', generation: 4, spouse: 'Asha' },
-  { id: '1243', name: 'Gopi Chand', parentId: '124', generation: 4, spouse: 'Manju' },
-  { id: '1244', name: 'Ram Naresh', parentId: '124', generation: 4, spouse: 'Savita' },
+  // Generation 5 — children of Raj Kumar (1123)
+  { id: '11231', name: 'Mohan', parentId: '1123', generation: 5 },
+  { id: '11232', name: 'Binda', parentId: '1123', generation: 5 },
+  { id: '11233', name: 'Ramesh', parentId: '1123', generation: 5 },
 
-  // Generation 5 — children of Brij Kumar (1111)
-  { id: '11111', name: 'Pradeep Kumar', parentId: '1111', generation: 5 },
+  // Generation 5 — children of Om Saran (1124)
+  { id: '11241', name: 'Gopal Krishan', parentId: '1124', generation: 5 },
+  { id: '11242', name: 'Radha Krishan', parentId: '1124', generation: 5, spouse: 'Asha' },
+  { id: '11243', name: 'Gopi Chand', parentId: '1124', generation: 5, spouse: 'Manju' },
+  { id: '11244', name: 'Ram Naresh', parentId: '1124', generation: 5, spouse: 'Savita' },
 
-  // Generation 5 — children of Suraj Prasad (1112)
-  { id: '11121', name: 'Anil Kumar', parentId: '1112', generation: 5 },
-  { id: '11122', name: 'Sunil Kumar', parentId: '1112', generation: 5 },
+  // Generation 6 — children of Rajendra Kumar (11111)
+  { id: '111111', name: 'Dr Rakesh Kumar', parentId: '11111', generation: 6 },
+  { id: '111112', name: 'Dinesh Kumar', parentId: '11111', generation: 6 },
+  { id: '111113', name: 'Shailendra', parentId: '11111', generation: 6 },
+  { id: '111114', name: 'Anil Kumar', parentId: '11111', generation: 6 },
+  { id: '111115', name: 'Mrs Padma', parentId: '11111', generation: 6 },
+  { id: '111116', name: 'Mrs Vipula', parentId: '11111', generation: 6 },
 
-  // Generation 5 — children of Sohan Lal (1131)
-  { id: '11311', name: 'Sunil Kumar', parentId: '1131', generation: 5 },
+  // Generation 6 — children of Mohan Lal (11112)
+  { id: '111121', name: 'Dr Ashok', parentId: '11112', generation: 6 },
+  { id: '111122', name: 'Satish', parentId: '11112', generation: 6 },
+  { id: '111123', name: 'Raju', parentId: '11112', generation: 6 },
 
-  // Generation 5 — children of Mohan Lal (1132)
-  { id: '11321', name: 'Ashok Kumar', parentId: '1132', generation: 5 },
-  { id: '11322', name: 'Sailesh', parentId: '1132', generation: 5 },
-  { id: '11323', name: 'Raju', parentId: '1132', generation: 5 },
+  // Generation 6 — children of Sohan Lal (11113)
+  { id: '111131', name: 'Dr Sunil', parentId: '11113', generation: 6 },
+  { id: '111132', name: 'Dr Madhu', parentId: '11113', generation: 6 },
 
-  // Generation 5 — children of Rajendra Kumar (1133)
-  { id: '11331', name: 'Dr Rakesh', parentId: '1133', generation: 5 },
-  { id: '11332', name: 'Dinesh', parentId: '1133', generation: 5 },
-  { id: '11333', name: 'Shailendra', parentId: '1133', generation: 5 },
-  { id: '11334', name: 'Anil Kumar', parentId: '1133', generation: 5 },
+  // Generation 6 — children of Virandra Kumar (11115)
+  { id: '111151', name: 'Dr Sanjeev', parentId: '11115', generation: 6 },
+  { id: '111152', name: 'Dr Sujata Bhargav', parentId: '11115', generation: 6 },
+  { id: '111153', name: 'Dr Jyoti Bindal', parentId: '11115', generation: 6 },
 
-  // Generation 5 — children of Virandra Kumar (1134)
-  { id: '11341', name: 'Dr Sanjeev', parentId: '1134', generation: 5 },
-  { id: '11342', name: 'Dr Sujata', parentId: '1134', generation: 5 },
-  { id: '11343', name: 'Dr Jyoti', parentId: '1134', generation: 5 },
+  // Generation 6 — children of Madan Kumar (11121)
+  { id: '111211', name: 'Dr Dinesh', parentId: '11121', generation: 6, spouse: 'Dr Smita' },
+  { id: '111212', name: 'Arun', parentId: '11121', generation: 6 },
+  { id: '111213', name: 'Mrs Vinodini', parentId: '11121', generation: 6 },
+  { id: '111214', name: 'Mrs Veena Jain', parentId: '11121', generation: 6 },
+  { id: '111215', name: 'Mrs Pramodini', parentId: '11121', generation: 6 },
 
-  // Generation 5 — children of Madan Kumar (1141)
-  { id: '11411', name: 'Dr Dinesh', parentId: '1141', generation: 5 },
-  { id: '11412', name: 'Arun Kumar', parentId: '1141', generation: 5 },
-  { id: '11413', name: 'Mrs Vinu', parentId: '1141', generation: 5 },
-  { id: '11414', name: 'Mrs Vina', parentId: '1141', generation: 5 },
-  { id: '11415', name: 'Mrs Padmac', parentId: '1141', generation: 5 },
+  // Generation 6 — children of Shiv Kumar (11122)
+  { id: '111221', name: 'Mahesh Kumar', parentId: '11122', generation: 6 },
+  { id: '111222', name: 'Mrs Krishna', parentId: '11122', generation: 6 },
+  { id: '111223', name: 'Mrs Dolly', parentId: '11122', generation: 6 },
 
-  // Generation 5 — children of Shiv Kumar (1142)
-  { id: '11421', name: 'Mahesh Kumar', parentId: '1142', generation: 5 },
-  { id: '11422', name: 'Mrs Krishna', parentId: '1142', generation: 5 },
-  { id: '11423', name: 'Mrs Dolly', parentId: '1142', generation: 5 },
+  // Generation 6 — children of Brij Kumar (11141)
+  { id: '111411', name: 'Pradeep Kumar', parentId: '11141', generation: 6 },
 
-  // Generation 5 — children of Prem Prakash (1211)
-  { id: '12111', name: 'Pawan Kumar', parentId: '1211', generation: 5 },
-  { id: '12112', name: 'Rajesh', parentId: '1211', generation: 5 },
-  { id: '12113', name: 'Deepak', parentId: '1211', generation: 5 },
+  // Generation 6 — children of Suraj Prasad (11142)
+  { id: '111421', name: 'Anil Kumar', parentId: '11142', generation: 6 },
+  { id: '111422', name: 'Sunil Kumar', parentId: '11142', generation: 6 },
 
-  // Generation 5 — children of Vishnu Prakash (1212)
-  { id: '12121', name: 'Rakesh', parentId: '1212', generation: 5 },
-  { id: '12122', name: 'Gree Raj', parentId: '1212', generation: 5 },
+  // Generation 6 — children of Prem Prakash (11211)
+  { id: '112111', name: 'Pawan Kumar', parentId: '11211', generation: 6 },
+  { id: '112112', name: 'Rajesh', parentId: '11211', generation: 6 },
+  { id: '112113', name: 'Deepak', parentId: '11211', generation: 6 },
 
-  // Generation 5 — children of Kishan Gopal (1213)
-  { id: '12131', name: 'Tanuj', parentId: '1213', generation: 5 },
+  // Generation 6 — children of Vishnu Prakash (11212)
+  { id: '112121', name: 'Rakesh', parentId: '11212', generation: 6 },
+  { id: '112122', name: 'Gree Raj', parentId: '11212', generation: 6 },
+
+  // Generation 6 — children of Kishan Gopal (11213)
+  { id: '112131', name: 'Tanuj', parentId: '11213', generation: 6 },
   // Note: source shows ID 12142 for Neeraj; parent overridden to 1213
-  { id: '12142', name: 'Neeraj', parentId: '1213', generation: 5 },
+  { id: '112142', name: 'Neeraj', parentId: '11213', generation: 6 },
 
-  // Generation 5 — children of Gopal Krishan (1241)
-  { id: '12411', name: 'Dr. Sanjay', parentId: '1241', generation: 5, spouse: 'Savita' },
-  { id: '12412', name: 'Shalu', parentId: '1241', generation: 5, spouse: 'Anil' },
+  // Generation 6 — children of Manohar Lal Singhal (11221)
+  { id: '112211', name: 'Manish Singhal', parentId: '11221', generation: 6 },
 
-  // Generation 5 — children of Radha Krishan (1242)
-  { id: '12421', name: 'Sumit', parentId: '1242', generation: 5, spouse: 'Shilpi' },
-  { id: '12422', name: 'Ruchir', parentId: '1242', generation: 5, spouse: 'Sonal' },
-  { id: '12423', name: 'Namrata', parentId: '1242', generation: 5, spouse: 'Varun' },
+  // Generation 6 — children of Rakesh (11224)
+  { id: '112241', name: 'Raina', parentId: '11224', generation: 6, spouse: 'Saurabh' },
+  { id: '112242', name: 'Nitin', parentId: '11224', generation: 6, spouse: 'Surabhi' },
 
-  // Generation 5 — children of Gopi Chand (1243)
-  { id: '12431', name: 'Priya', parentId: '1243', generation: 5, spouse: 'Mayank' },
-  { id: '12432', name: 'Saurabh', parentId: '1243', generation: 5, spouse: 'Jalpa' },
+  // Generation 6 — children of Gopal Krishan (11241)
+  { id: '112411', name: 'Dr. Sanjay', parentId: '11241', generation: 6, spouse: 'Savita' },
+  { id: '112412', name: 'Shalu', parentId: '11241', generation: 6, spouse: 'Anil' },
 
-  // Generation 5 — children of Ram Naresh (1244)
-  { id: '12441', name: 'Namieta', parentId: '1244', generation: 5, spouse: 'Vijay' },
-  { id: '12442', name: 'Amit', parentId: '1244', generation: 5, spouse: 'Richa' },
+  // Generation 6 — children of Radha Krishan (11242)
+  { id: '112421', name: 'Sumit', parentId: '11242', generation: 6, spouse: 'Shilpi' },
+  { id: '112422', name: 'Ruchir', parentId: '11242', generation: 6, spouse: 'Sonal' },
+  { id: '112423', name: 'Namrata', parentId: '11242', generation: 6, spouse: 'Varun' },
 
-  // Generation 6 — children of Tanuj (12131)
-  { id: '121311', name: 'Nishita', parentId: '12131', generation: 6 },
-  { id: '121312', name: 'Vasika', parentId: '12131', generation: 6 },
+  // Generation 6 — children of Gopi Chand (11243)
+  { id: '112431', name: 'Priya', parentId: '11243', generation: 6, spouse: 'Mayank' },
+  { id: '112432', name: 'Saurabh', parentId: '11243', generation: 6, spouse: 'Jalpa' },
 
-  // Generation 6 — children of Neeraj (12142)
-  { id: '121421', name: 'Vasika', parentId: '12142', generation: 6 },
-  { id: '121422', name: 'Sobhagya', parentId: '12142', generation: 6 },
+  // Generation 6 — children of Ram Naresh (11244)
+  { id: '112441', name: 'Namieta', parentId: '11244', generation: 6, spouse: 'Vijay' },
+  { id: '112442', name: 'Amit', parentId: '11244', generation: 6, spouse: 'Richa' },
 
-  // Generation 6 — children of Dr. Sanjay (12411)
-  { id: '124111', name: 'Ayush', parentId: '12411', generation: 6 },
-  { id: '124112', name: 'Satyam', parentId: '12411', generation: 6 },
+  // Generation 7 — children of Tanuj (112131)
+  { id: '1121311', name: 'Nishita', parentId: '112131', generation: 7 },
+  { id: '1121312', name: 'Vasika', parentId: '112131', generation: 7 },
 
-  // Generation 6 — children of Shalu (12412)
-  { id: '124121', name: 'Shivang', parentId: '12412', generation: 6 },
+  // Generation 7 — children of Neeraj (112142)
+  { id: '1121421', name: 'Vasika', parentId: '112142', generation: 7 },
+  { id: '1121422', name: 'Sobhagya', parentId: '112142', generation: 7 },
 
-  // Generation 6 — children of Sumit (12421)
-  { id: '124211', name: 'Agnim', parentId: '12421', generation: 6 },
-  { id: '124212', name: 'Ananya', parentId: '12421', generation: 6 },
+  // Generation 7 — children of Dr. Sanjay (112411)
+  { id: '1124111', name: 'Ayush', parentId: '112411', generation: 7 },
+  { id: '1124112', name: 'Satyam', parentId: '112411', generation: 7 },
 
-  // Generation 6 — children of Ruchir (12422)
-  { id: '124221', name: 'Nandani', parentId: '12422', generation: 6 },
-  { id: '124222', name: 'Avni', parentId: '12422', generation: 6 },
+  // Generation 7 — children of Shalu (112412)
+  { id: '1124121', name: 'Shivang', parentId: '112412', generation: 7 },
 
-  // Generation 6 — children of Priya (12431)
-  { id: '124311', name: 'Ayati', parentId: '12431', generation: 6 },
+  // Generation 7 — children of Sumit (112421)
+  { id: '1124211', name: 'Agnim', parentId: '112421', generation: 7 },
+  { id: '1124212', name: 'Ananya', parentId: '112421', generation: 7 },
 
-  // Generation 6 — children of Saurabh (12432)
-  { id: '124321', name: 'Unknown', parentId: '12432', generation: 6 },
-  { id: '124322', name: 'Unknown', parentId: '12432', generation: 6 },
+  // Generation 7 — children of Ruchir (112422)
+  { id: '1124221', name: 'Nandani', parentId: '112422', generation: 7 },
+  { id: '1124222', name: 'Avni', parentId: '112422', generation: 7 },
 
-  // Generation 6 — children of Namieta (12441)
-  { id: '124411', name: 'Ananya', parentId: '12441', generation: 6 },
-  { id: '124412', name: 'Prabir', parentId: '12441', generation: 6 },
+  // Generation 7 — children of Priya (112431)
+  { id: '1124311', name: 'Ayati', parentId: '112431', generation: 7 },
 
-  // Generation 6 — children of Amit (12442)
-  { id: '124421', name: 'Krishnav', parentId: '12442', generation: 6 },
-  { id: '124422', name: 'Arjun', parentId: '12442', generation: 6 },
+  // Generation 7 — children of Saurabh (112432)
+  { id: '1124321', name: 'Sheyransh', parentId: '112432', generation: 7 },
+  { id: '1124322', name: 'Shreenika', parentId: '112432', generation: 7 },
+
+  // Generation 7 — children of Namieta (112441)
+  { id: '1124411', name: 'Ananya', parentId: '112441', generation: 7 },
+  { id: '1124412', name: 'Prabir', parentId: '112441', generation: 7 },
+
+  // Generation 7 — children of Amit (112442)
+  { id: '1124421', name: 'Krishnav', parentId: '112442', generation: 7 },
+  { id: '1124422', name: 'Arjun', parentId: '112442', generation: 7 },
 ]
 
 export const CONTACT_EMAIL = 'namratagovil@gmail.com'

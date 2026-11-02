@@ -19,8 +19,8 @@ export function getGenerationColor(generation: number): string {
 }
 
 export function getBranchColor(id: string): string {
-  if (id.startsWith('11')) return '#B4D4CF'
-  if (id.startsWith('12')) return '#D2BF96'
+  if (id.startsWith('111')) return '#B4D4CF'
+  if (id.startsWith('112')) return '#D2BF96'
   return TERTIARY_COLORS[0]
 }
 
